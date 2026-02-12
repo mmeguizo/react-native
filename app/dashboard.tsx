@@ -1,6 +1,7 @@
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { Stack, useRouter } from "expo-router";
 import React from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 export default function Dashboard() {
@@ -23,12 +24,17 @@ export default function Dashboard() {
           },
           headerTitle: "DASHBOARD",
           headerTitleAlign: "center",
+          headerRight: () => (
+            <TouchableOpacity onPress={logout} style={{ marginRight: 15 }}>
+              <MaterialIcons name="logout" size={24} color="#fff" />
+            </TouchableOpacity>
+          ),
         }}
       />
       <SafeAreaView style={styles.container}>
         <View style={styles.mainContainer}>
           <Text style={styles.text}>Dashboard</Text>
-          <Button title="Logout" onPress={logout} />
+          {/* <Button title="Logout" onPress={logout} /> */}
         </View>
       </SafeAreaView>
     </SafeAreaProvider>
