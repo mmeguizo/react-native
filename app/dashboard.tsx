@@ -8,7 +8,7 @@ export default function Dashboard() {
   const router = useRouter();
 
   function logout() {
-    router.push("/");
+    router.replace("/");
   }
 
   return (

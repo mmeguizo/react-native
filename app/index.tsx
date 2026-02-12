@@ -25,10 +25,10 @@ export default function Index() {
         : "Login Successful";
     if (Platform.OS === "web") {
       window.alert(message);
-      router.push("/dashboard");
+      router.replace("/dashboard");
     } else {
       Alert.alert(message);
-      router.push("/dashboard");
+      router.replace("/dashboard");
     }
     // Alert.alert(message);
   }
