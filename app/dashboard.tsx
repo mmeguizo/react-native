@@ -1,11 +1,18 @@
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { Stack, useRouter } from "expo-router";
-import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import React, { useState } from "react";
+import {
+  Pressable,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 export default function Dashboard() {
   const router = useRouter();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   function logout() {
     router.replace("/");
@@ -25,17 +32,51 @@ export default function Dashboard() {
           headerTitle: "DASHBOARD",
           headerTitleAlign: "center",
           headerRight: () => (
-            <TouchableOpacity onPress={logout} style={{ marginRight: 15 }}>
-              <MaterialIcons name="logout" size={24} color="#fff" />
+            <TouchableOpacity
+              onPress={() => setMenuOpen(!menuOpen)}
+              style={{ marginRight: 15 }}
+            >
+              <MaterialIcons
+                name={menuOpen ? "close" : "menu"}
+                size={24}
+                color="#fff"
+              />
             </TouchableOpacity>
           ),
         }}
       />
-      <SafeAreaView style={styles.container}>
-        <View style={styles.mainContainer}>
-          <Text style={styles.text}>Dashboard</Text>
-          {/* <Button title="Logout" onPress={logout} /> */}
+      {menuOpen && (
+        <View style={styles.dropdownMenu}>
+          <TouchableOpacity
+            style={styles.menuItem}
+            onPress={() => {
+              setMenuOpen(false);
+              // router.replace("/profile"); ← add later
+            }}
+          >
+            <MaterialIcons name="person" size={20} color="#333" />
+            <Text style={styles.menuText}>Profile</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.menuItem}
+            onPress={() => {
+              setMenuOpen(false);
+              logout();
+            }}
+          >
+            <MaterialIcons name="logout" size={20} color="#c0392b" />
+            <Text style={[styles.menuText, { color: "#c0392b" }]}>Logout</Text>
+          </TouchableOpacity>
         </View>
+      )}
+      <SafeAreaView style={styles.container}>
+        <Pressable style={{ flex: 1 }} onPress={() => setMenuOpen(false)}>
+          <View style={styles.mainContainer}>
+            <Text style={styles.text}>Dashboard</Text>
+            {/* <Button title="Logout" onPress={logout} /> */}
+          </View>
+        </Pressable>
       </SafeAreaView>
     </SafeAreaProvider>
   );
@@ -76,5 +117,31 @@ const styles = StyleSheet.create({
   mainContainer: {
     display: "flex",
     alignItems: "center",
+  },
+  dropdownMenu: {
+    position: "absolute",
+    top: 0,
+    right: 10,
+    backgroundColor: "#fff",
+    borderRadius: 8,
+    paddingVertical: 5,
+    width: 160,
+    elevation: 5,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    zIndex: 100,
+  },
+  menuItem: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingVertical: 12,
+    paddingHorizontal: 15,
+  },
+  menuText: {
+    fontSize: 16,
+    marginLeft: 10,
+    color: "#333",
   },
 });
