@@ -41,3 +41,7 @@ app-example
 # generated native folders
 /ios
 /android
+
+# Temporary conversion scripts
+convert-to-pdf.js
+convert-to-html.js
