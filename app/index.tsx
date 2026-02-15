@@ -1,36 +1,41 @@
 import { Stack, useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
-  Alert,
   Button,
-  Platform,
   StyleSheet,
   Text,
   TextInput,
-  View,
+  View
 } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import Toast from "react-native-toast-message";
+
+
 export default function Index() {
   const router = useRouter();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const staticUsername = "Admin";
   const staticPassword = "Password123!";
 
   function verifyUser() {
-    let message =
-      username !== staticUsername || password !== staticPassword
-        ? "Invalid Credentials"
-        : "Login Successful";
-    if (Platform.OS === "web") {
-      window.alert(message);
-      router.replace("/dashboard");
-    } else {
-      Alert.alert(message);
-      router.replace("/dashboard");
+    if (username !== staticUsername || password !== staticPassword) {
+      // setErrorMessage("Wrong Credentials");
+      Toast.show({
+        type: "error",
+        text1: "Invalid Credentials",
+      });
+      return;
     }
-    // Alert.alert(message);
+    Toast.show({
+      type: "success",
+      text1: "Login Successful",
+    });
+    // setErrorMessage("Login Successful");
+    router.replace("/dashboard");
+
   }
 
   return (
@@ -68,6 +73,11 @@ export default function Index() {
           <View style={styles.buttonFit}>
             <Button title="Login" onPress={verifyUser} />
           </View>
+          {/* {errorMessage ? (
+            <Text style={{ color: "red", fontSize: 14 }}>
+              {errorMessage}
+            </Text>
+          ) : null} */}
         </View>
       </SafeAreaView>
     </SafeAreaProvider>
