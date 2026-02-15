@@ -2,6 +2,28 @@
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
+## 📚 **NEW: Complete React Native Learning Guide Available!**
+
+**Perfect for beginners!** This repository now includes a comprehensive learning guide based on the login app code.
+
+👉 **[Start Learning Here - GUIDE_README.md](GUIDE_README.md)** 👈
+
+### Available Formats:
+- 📖 **[Markdown Guide](LEARNING_GUIDE.md)** - Read on GitHub or any markdown viewer
+- 🌐 **HTML Guide** (`React_Native_Beginner_Guide.html`) - Open in browser, easily convert to PDF
+
+### What's Covered:
+- ✅ React Native & Expo fundamentals
+- ✅ Step-by-step code explanations
+- ✅ State management with hooks
+- ✅ Navigation between screens
+- ✅ Styling and layouts
+- ✅ Best practices and next steps
+
+**Treat yourself as a React Native beginner and follow the comprehensive guide!**
+
+---
+
 ## Get started
 
 1. Install dependencies

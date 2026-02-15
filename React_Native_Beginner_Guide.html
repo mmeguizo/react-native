@@ -1,0 +1,1473 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Native Complete Beginner's Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #fff;
+        }
+        
+        h1 {
+            color: #2A7B9B;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            border-bottom: 3px solid #2A7B9B;
+            padding-bottom: 10px;
+        }
+        
+        h2 {
+            color: #2A7B9B;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            font-size: 2em;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 8px;
+        }
+        
+        h3 {
+            color: #3a3a3a;
+            margin-top: 25px;
+            margin-bottom: 12px;
+            font-size: 1.5em;
+        }
+        
+        h4 {
+            color: #3a3a3a;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        code {
+            background-color: #f5f5f5;
+            border: 1px solid #e0e0e0;
+            border-radius: 3px;
+            padding: 2px 6px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9em;
+            color: #c7254e;
+        }
+        
+        pre {
+            background-color: #f5f5f5;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 20px 0;
+            overflow-x: auto;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        pre code {
+            background-color: transparent;
+            border: none;
+            padding: 0;
+            color: #333;
+            font-size: 0.9em;
+        }
+        
+        ul, ol {
+            margin: 15px 0 15px 30px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        strong {
+            color: #2A7B9B;
+            font-weight: 600;
+        }
+        
+        a {
+            color: #2A7B9B;
+            text-decoration: none;
+            border-bottom: 1px solid #2A7B9B;
+        }
+        
+        a:hover {
+            color: #1e5d7a;
+            border-bottom-color: #1e5d7a;
+        }
+        
+        blockquote {
+            border-left: 4px solid #2A7B9B;
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #666;
+            font-style: italic;
+        }
+        
+        hr {
+            border: none;
+            border-top: 2px solid #e0e0e0;
+            margin: 40px 0;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #2A7B9B;
+            color: white;
+            font-weight: bold;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .toc {
+            background-color: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 30px 0;
+        }
+        
+        @media print {
+            body {
+                max-width: 100%;
+                padding: 20px;
+            }
+            
+            h1, h2, h3, h4 {
+                page-break-after: avoid;
+            }
+            
+            pre, blockquote {
+                page-break-inside: avoid;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            h2 {
+                font-size: 1.5em;
+            }
+            
+            pre {
+                padding: 10px;
+                font-size: 0.85em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>React Native Complete Beginner&#39;s Guide</h1>
+<h2>Based on Login App Example</h2>
+<hr>
+<h2>Table of Contents</h2>
+<ol>
+<li><a href="#introduction">Introduction to React Native</a></li>
+<li><a href="#setup">Setting Up Your Development Environment</a></li>
+<li><a href="#project-structure">Understanding the Project Structure</a></li>
+<li><a href="#fundamentals">React Native Fundamentals</a></li>
+<li><a href="#login-screen">Building the Login Screen</a></li>
+<li><a href="#dashboard-screen">Building the Dashboard Screen</a></li>
+<li><a href="#navigation">Navigation Between Screens</a></li>
+<li><a href="#state-management">State Management</a></li>
+<li><a href="#styling">Styling in React Native</a></li>
+<li><a href="#platform-specific">Platform-Specific Code</a></li>
+<li><a href="#best-practices">Best Practices</a></li>
+<li><a href="#next-steps">Next Steps</a></li>
+</ol>
+<hr>
+<h2>1. Introduction to React Native {#introduction}</h2>
+<h3>What is React Native?</h3>
+<p>React Native is a JavaScript framework for building native mobile applications for iOS and Android. It uses React (a JavaScript library for building user interfaces) and allows you to write code once and run it on both platforms.</p>
+<h3>Why Use React Native?</h3>
+<ul>
+<li><strong>Cross-Platform</strong>: Write once, run on iOS and Android</li>
+<li><strong>JavaScript</strong>: Use JavaScript instead of Swift/Objective-C or Kotlin/Java</li>
+<li><strong>Fast Development</strong>: Hot reloading allows instant preview of changes</li>
+<li><strong>Native Performance</strong>: Uses native components for better performance</li>
+<li><strong>Large Community</strong>: Extensive libraries and community support</li>
+</ul>
+<h3>What is Expo?</h3>
+<p>Expo is a framework and platform built around React Native that makes development easier:</p>
+<ul>
+<li>No need for Xcode or Android Studio to get started</li>
+<li>Easy setup and deployment</li>
+<li>Built-in components and APIs</li>
+<li>Simplified build process</li>
+</ul>
+<hr>
+<h2>2. Setting Up Your Development Environment {#setup}</h2>
+<h3>Prerequisites</h3>
+<ul>
+<li><strong>Node.js</strong>: JavaScript runtime (v18 or newer recommended)</li>
+<li><strong>npm</strong> or <strong>yarn</strong>: Package manager</li>
+<li><strong>Code Editor</strong>: VS Code is recommended</li>
+<li><strong>Smartphone</strong> (optional): For testing on real device</li>
+</ul>
+<h3>Installation Steps</h3>
+<h4>Step 1: Install Node.js</h4>
+<p>Download and install from <a href="https://nodejs.org/">nodejs.org</a></p>
+<pre><code class="language-bash"># Verify installation
+node --version
+npm --version
+</code></pre>
+<h4>Step 2: Create a New Expo Project</h4>
+<pre><code class="language-bash"># Install Expo CLI globally (optional)
+npm install -g expo-cli
+
+# Create new project
+npx create-expo-app my-app
+
+# Navigate to project
+cd my-app
+</code></pre>
+<h4>Step 3: Install Dependencies</h4>
+<p>Our project uses these key dependencies:</p>
+<pre><code class="language-json">{
+  &quot;dependencies&quot;: {
+    &quot;expo&quot;: &quot;~54.0.33&quot;,
+    &quot;react&quot;: &quot;19.1.0&quot;,
+    &quot;react-native&quot;: &quot;0.81.5&quot;,
+    &quot;expo-router&quot;: &quot;~6.0.23&quot;,
+    &quot;react-native-safe-area-context&quot;: &quot;~5.6.0&quot;,
+    &quot;@react-navigation/native&quot;: &quot;^7.1.8&quot;
+  }
+}
+</code></pre>
+<p>Install them:</p>
+<pre><code class="language-bash">npm install
+</code></pre>
+<h4>Step 4: Start the Development Server</h4>
+<pre><code class="language-bash">npx expo start
+</code></pre>
+<p>This will open Expo DevTools in your browser. You can:</p>
+<ul>
+<li>Press <strong>i</strong> to open iOS simulator</li>
+<li>Press <strong>a</strong> to open Android emulator</li>
+<li>Scan QR code with Expo Go app on your phone</li>
+</ul>
+<hr>
+<h2>3. Understanding the Project Structure {#project-structure}</h2>
+<p>Our login app has this structure:</p>
+<pre><code>react-native-app/
+├── app/                    # Main application code
+│   ├── _layout.tsx        # Root layout configuration
+│   ├── index.tsx          # Login screen (home page)
+│   └── dashboard.tsx      # Dashboard screen
+├── assets/                # Images, fonts, etc.
+├── node_modules/          # Dependencies
+├── .gitignore            # Git ignore file
+├── app.json              # Expo configuration
+├── package.json          # Project dependencies
+└── tsconfig.json         # TypeScript configuration
+</code></pre>
+<h3>Key Files Explained</h3>
+<h4><code>app.json</code> - Expo Configuration</h4>
+<pre><code class="language-json">{
+  &quot;expo&quot;: {
+    &quot;name&quot;: &quot;test&quot;,
+    &quot;slug&quot;: &quot;test&quot;,
+    &quot;version&quot;: &quot;1.0.0&quot;,
+    &quot;orientation&quot;: &quot;portrait&quot;,
+    &quot;platforms&quot;: [&quot;ios&quot;, &quot;android&quot;, &quot;web&quot;]
+  }
+}
+</code></pre>
+<h4><code>package.json</code> - Dependencies &amp; Scripts</h4>
+<p>Lists all packages your app needs and defines scripts to run:</p>
+<pre><code class="language-json">{
+  &quot;scripts&quot;: {
+    &quot;start&quot;: &quot;expo start&quot;,      // Start development server
+    &quot;android&quot;: &quot;expo start --android&quot;,
+    &quot;ios&quot;: &quot;expo start --ios&quot;,
+    &quot;web&quot;: &quot;expo start --web&quot;
+  }
+}
+</code></pre>
+<hr>
+<h2>4. React Native Fundamentals {#fundamentals}</h2>
+<h3>Core Components</h3>
+<p>React Native provides built-in components that map to native UI elements:</p>
+<h4>View Component</h4>
+<p>Like a <code>&lt;div&gt;</code> in HTML - a container for other components</p>
+<pre><code class="language-typescript">import { View } from &#39;react-native&#39;;
+
+&lt;View style={{ flex: 1, padding: 20 }}&gt;
+  {/* Other components go here */}
+&lt;/View&gt;
+</code></pre>
+<h4>Text Component</h4>
+<p>Display text (you must use Text, not plain text)</p>
+<pre><code class="language-typescript">import { Text } from &#39;react-native&#39;;
+
+&lt;Text style={{ fontSize: 20, color: &#39;blue&#39; }}&gt;
+  Hello World!
+&lt;/Text&gt;
+</code></pre>
+<h4>TextInput Component</h4>
+<p>Input field for user text entry</p>
+<pre><code class="language-typescript">import { TextInput } from &#39;react-native&#39;;
+
+&lt;TextInput
+  placeholder=&quot;Enter your name&quot;
+  value={name}
+  onChangeText={setName}
+  style={{ height: 40, borderWidth: 1 }}
+/&gt;
+</code></pre>
+<h4>Button Component</h4>
+<p>A simple button</p>
+<pre><code class="language-typescript">import { Button } from &#39;react-native&#39;;
+
+&lt;Button 
+  title=&quot;Click Me&quot; 
+  onPress={() =&gt; console.log(&#39;Pressed!&#39;)}
+/&gt;
+</code></pre>
+<h3>Import Statements</h3>
+<p>Always import components before using them:</p>
+<pre><code class="language-typescript">import React from &#39;react&#39;;
+import { View, Text, Button, StyleSheet } from &#39;react-native&#39;;
+</code></pre>
+<hr>
+<h2>5. Building the Login Screen {#login-screen}</h2>
+<p>Let&#39;s break down our <code>app/index.tsx</code> file step by step.</p>
+<h3>Full Login Screen Code</h3>
+<pre><code class="language-typescript">import { Stack, useRouter } from &quot;expo-router&quot;;
+import React, { useState } from &quot;react&quot;;
+import {
+  Alert,
+  Button,
+  Platform,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from &quot;react-native&quot;;
+import { SafeAreaProvider, SafeAreaView } from &quot;react-native-safe-area-context&quot;;
+
+export default function Index() {
+  const router = useRouter();
+  const [username, setUsername] = useState(&quot;&quot;);
+  const [password, setPassword] = useState(&quot;&quot;);
+
+  const staticUsername = &quot;Admin&quot;;
+  const staticPassword = &quot;Password123!&quot;;
+
+  function verifyUser() {
+    let message =
+      username !== staticUsername || password !== staticPassword
+        ? &quot;Invalid Credentials&quot;
+        : &quot;Login Successful&quot;;
+    
+    if (Platform.OS === &quot;web&quot;) {
+      window.alert(message);
+    } else {
+      Alert.alert(message);
+    }
+    
+    if (username === staticUsername &amp;&amp; password === staticPassword) {
+      router.push(&quot;/dashboard&quot;);
+    }
+  }
+
+  return (
+    &lt;SafeAreaProvider&gt;
+      &lt;Stack.Screen
+        options={{
+          headerStyle: {
+            backgroundColor: &quot;#2A7B9B&quot;,
+          },
+          headerTintColor: &quot;#fff&quot;,
+          headerTitleStyle: {
+            fontWeight: &quot;bold&quot;,
+          },
+          headerTitle: &quot;LOGIN&quot;,
+          headerTitleAlign: &quot;center&quot;,
+        }}
+      /&gt;
+      &lt;SafeAreaView style={styles.container}&gt;
+        &lt;View style={styles.mainContainer}&gt;
+          &lt;Text style={styles.text}&gt;Login System&lt;/Text&gt;
+          
+          &lt;TextInput
+            style={styles.input}
+            value={username}
+            onChangeText={setUsername}
+            placeholder=&quot;Username&quot;
+          /&gt;
+          
+          &lt;TextInput
+            style={styles.input}
+            onChangeText={setPassword}
+            value={password}
+            placeholder=&quot;Password&quot;
+            secureTextEntry
+          /&gt;
+          
+          &lt;View style={styles.buttonFit}&gt;
+            &lt;Button title=&quot;Login&quot; onPress={verifyUser} /&gt;
+          &lt;/View&gt;
+        &lt;/View&gt;
+      &lt;/SafeAreaView&gt;
+    &lt;/SafeAreaProvider&gt;
+  );
+}
+
+const BACKGROUND_COLOR = &quot;#2A7B9B&quot;;
+
+const styles = StyleSheet.create({
+  buttonFit: {
+    width: &quot;80%&quot;,
+    marginTop: 10,
+  },
+  container: {
+    display: &quot;flex&quot;,
+    flex: 1,
+    justifyContent: &quot;center&quot;,
+    backgroundColor: BACKGROUND_COLOR,
+  },
+  text: {
+    fontSize: 24,
+    fontWeight: &quot;bold&quot;,
+    color: &quot;#fff&quot;,
+  },
+  input: {
+    height: 40,
+    borderColor: &quot;gray&quot;,
+    borderWidth: 1,
+    marginTop: 10,
+    paddingHorizontal: 10,
+    width: &quot;80%&quot;,
+    backgroundColor: &quot;#fff&quot;,
+  },
+  mainContainer: {
+    display: &quot;flex&quot;,
+    alignItems: &quot;center&quot;,
+  },
+});
+</code></pre>
+<h3>Code Explanation - Section by Section</h3>
+<h4>1. Import Statements</h4>
+<pre><code class="language-typescript">import { Stack, useRouter } from &quot;expo-router&quot;;
+import React, { useState } from &quot;react&quot;;
+import {
+  Alert,
+  Button,
+  Platform,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from &quot;react-native&quot;;
+import { SafeAreaProvider, SafeAreaView } from &quot;react-native-safe-area-context&quot;;
+</code></pre>
+<p><strong>What each import does:</strong></p>
+<ul>
+<li><code>Stack, useRouter</code> - Navigation tools from Expo Router</li>
+<li><code>useState</code> - React hook for managing component state</li>
+<li><code>Alert, Button, etc.</code> - Built-in React Native components</li>
+<li><code>SafeAreaProvider, SafeAreaView</code> - Handles safe areas (notches, status bars)</li>
+</ul>
+<h4>2. Component Declaration</h4>
+<pre><code class="language-typescript">export default function Index() {
+  // Component code
+}
+</code></pre>
+<ul>
+<li><code>export default</code> - Makes this component the default export</li>
+<li><code>function Index()</code> - Function component (modern React way)</li>
+<li>This component represents our login screen</li>
+</ul>
+<h4>3. Hooks and State</h4>
+<pre><code class="language-typescript">const router = useRouter();
+const [username, setUsername] = useState(&quot;&quot;);
+const [password, setPassword] = useState(&quot;&quot;);
+</code></pre>
+<p><strong>Understanding useState:</strong></p>
+<ul>
+<li><code>useState(&quot;&quot;)</code> - Creates a state variable with initial value &quot;&quot;</li>
+<li>Returns an array: <code>[currentValue, functionToUpdateValue]</code></li>
+<li><code>username</code> - Current value of username</li>
+<li><code>setUsername</code> - Function to update username</li>
+<li>When state changes, component re-renders</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre><code class="language-typescript">const [count, setCount] = useState(0);
+// count is 0
+setCount(5);
+// count is now 5
+</code></pre>
+<h4>4. Static Credentials</h4>
+<pre><code class="language-typescript">const staticUsername = &quot;Admin&quot;;
+const staticPassword = &quot;Password123!&quot;;
+</code></pre>
+<p>Hardcoded credentials for demo purposes. In a real app, you&#39;d validate against a backend API.</p>
+<h4>5. Verification Function</h4>
+<pre><code class="language-typescript">function verifyUser() {
+  let message =
+    username !== staticUsername || password !== staticPassword
+      ? &quot;Invalid Credentials&quot;
+      : &quot;Login Successful&quot;;
+  
+  if (Platform.OS === &quot;web&quot;) {
+    window.alert(message);
+  } else {
+    Alert.alert(message);
+  }
+  
+  if (username === staticUsername &amp;&amp; password === staticPassword) {
+    router.push(&quot;/dashboard&quot;);
+  }
+}
+</code></pre>
+<p><strong>Breaking it down:</strong></p>
+<ol>
+<li><strong>Ternary Operator</strong>: <code>condition ? valueIfTrue : valueIfFalse</code></li>
+<li><strong>Validation</strong>: Checks if username AND password match</li>
+<li><strong>Platform Check</strong>: Different alert methods for web vs mobile</li>
+<li><strong>Navigation</strong>: If login successful, navigate to dashboard</li>
+</ol>
+<h4>6. UI Components - Header Configuration</h4>
+<pre><code class="language-typescript">&lt;Stack.Screen
+  options={{
+    headerStyle: {
+      backgroundColor: &quot;#2A7B9B&quot;,
+    },
+    headerTintColor: &quot;#fff&quot;,
+    headerTitleStyle: {
+      fontWeight: &quot;bold&quot;,
+    },
+    headerTitle: &quot;LOGIN&quot;,
+    headerTitleAlign: &quot;center&quot;,
+  }}
+/&gt;
+</code></pre>
+<p>Configures the navigation header:</p>
+<ul>
+<li>Background color: Teal blue</li>
+<li>Text color: White</li>
+<li>Title: &quot;LOGIN&quot;</li>
+<li>Centered alignment</li>
+</ul>
+<h4>7. UI Components - Form Layout</h4>
+<pre><code class="language-typescript">&lt;SafeAreaView style={styles.container}&gt;
+  &lt;View style={styles.mainContainer}&gt;
+    &lt;Text style={styles.text}&gt;Login System&lt;/Text&gt;
+    
+    &lt;TextInput
+      style={styles.input}
+      value={username}
+      onChangeText={setUsername}
+      placeholder=&quot;Username&quot;
+    /&gt;
+    
+    &lt;TextInput
+      style={styles.input}
+      value={password}
+      onChangeText={setPassword}
+      placeholder=&quot;Password&quot;
+      secureTextEntry
+    /&gt;
+    
+    &lt;View style={styles.buttonFit}&gt;
+      &lt;Button title=&quot;Login&quot; onPress={verifyUser} /&gt;
+    &lt;/View&gt;
+  &lt;/View&gt;
+&lt;/SafeAreaView&gt;
+</code></pre>
+<p><strong>Component Hierarchy:</strong></p>
+<pre><code>SafeAreaView (Safe area handling)
+  └─ View (Main container)
+      ├─ Text (Title)
+      ├─ TextInput (Username)
+      ├─ TextInput (Password)
+      └─ View (Button container)
+          └─ Button (Login button)
+</code></pre>
+<p><strong>TextInput Props Explained:</strong></p>
+<ul>
+<li><code>value={username}</code> - Controlled component (value comes from state)</li>
+<li><code>onChangeText={setUsername}</code> - Updates state when user types</li>
+<li><code>placeholder=&quot;Username&quot;</code> - Gray text shown when empty</li>
+<li><code>secureTextEntry</code> - Hides password characters (•••)</li>
+</ul>
+<h4>8. Styling with StyleSheet</h4>
+<pre><code class="language-typescript">const BACKGROUND_COLOR = &quot;#2A7B9B&quot;;
+
+const styles = StyleSheet.create({
+  container: {
+    display: &quot;flex&quot;,
+    flex: 1,
+    justifyContent: &quot;center&quot;,
+    backgroundColor: BACKGROUND_COLOR,
+  },
+  input: {
+    height: 40,
+    borderColor: &quot;gray&quot;,
+    borderWidth: 1,
+    marginTop: 10,
+    paddingHorizontal: 10,
+    width: &quot;80%&quot;,
+    backgroundColor: &quot;#fff&quot;,
+  },
+  // ... more styles
+});
+</code></pre>
+<p><strong>Key Style Properties:</strong></p>
+<ul>
+<li><code>flex: 1</code> - Takes up all available space</li>
+<li><code>justifyContent: &quot;center&quot;</code> - Centers content vertically</li>
+<li><code>alignItems: &quot;center&quot;</code> - Centers content horizontally</li>
+<li><code>marginTop: 10</code> - Space above element</li>
+<li><code>paddingHorizontal: 10</code> - Padding on left and right</li>
+<li><code>width: &quot;80%&quot;</code> - 80% of parent width</li>
+</ul>
+<hr>
+<h2>6. Building the Dashboard Screen {#dashboard-screen}</h2>
+<p>Our <code>app/dashboard.tsx</code> is simpler - it just shows a welcome message and logout button.</p>
+<h3>Full Dashboard Code</h3>
+<pre><code class="language-typescript">import { Stack, useRouter } from &quot;expo-router&quot;;
+import React from &quot;react&quot;;
+import { Button, StyleSheet, Text, View } from &quot;react-native&quot;;
+import { SafeAreaProvider, SafeAreaView } from &quot;react-native-safe-area-context&quot;;
+
+export default function Dashboard() {
+  const router = useRouter();
+
+  function logout() {
+    router.push(&quot;/&quot;);
+  }
+
+  return (
+    &lt;SafeAreaProvider&gt;
+      &lt;Stack.Screen
+        options={{
+          headerStyle: {
+            backgroundColor: &quot;#2A7B9B&quot;,
+          },
+          headerTintColor: &quot;#fff&quot;,
+          headerTitleStyle: {
+            fontWeight: &quot;bold&quot;,
+          },
+          headerTitle: &quot;DASHBOARD&quot;,
+          headerTitleAlign: &quot;center&quot;,
+        }}
+      /&gt;
+      &lt;SafeAreaView style={styles.container}&gt;
+        &lt;View style={styles.mainContainer}&gt;
+          &lt;Text style={styles.text}&gt;Dashboard&lt;/Text&gt;
+          &lt;Button title=&quot;Logout&quot; onPress={logout} /&gt;
+        &lt;/View&gt;
+      &lt;/SafeAreaView&gt;
+    &lt;/SafeAreaProvider&gt;
+  );
+}
+
+const BACKGROUND_COLOR = &quot;#2A7B9B&quot;;
+
+const styles = StyleSheet.create({
+  container: {
+    display: &quot;flex&quot;,
+    flex: 1,
+    justifyContent: &quot;center&quot;,
+    backgroundColor: BACKGROUND_COLOR,
+  },
+  text: {
+    fontSize: 24,
+    fontWeight: &quot;bold&quot;,
+    color: &quot;#fff&quot;,
+  },
+  mainContainer: {
+    display: &quot;flex&quot;,
+    alignItems: &quot;center&quot;,
+  },
+});
+</code></pre>
+<h3>Key Concepts</h3>
+<h4>Logout Function</h4>
+<pre><code class="language-typescript">function logout() {
+  router.push(&quot;/&quot;);
+}
+</code></pre>
+<p>Simple - just navigates back to the home screen (login page).</p>
+<h4>Simpler Structure</h4>
+<p>No form inputs, no state management - just display and navigation.</p>
+<hr>
+<h2>7. Navigation Between Screens {#navigation}</h2>
+<h3>Expo Router File-Based Navigation</h3>
+<p>Expo Router uses file names to create routes automatically:</p>
+<pre><code>app/
+├── index.tsx       → Route: &quot;/&quot;
+├── dashboard.tsx   → Route: &quot;/dashboard&quot;
+└── _layout.tsx     → Layout wrapper for all screens
+</code></pre>
+<h3>Navigation Methods</h3>
+<h4>1. router.push()</h4>
+<p>Navigate to a new screen:</p>
+<pre><code class="language-typescript">import { useRouter } from &quot;expo-router&quot;;
+
+const router = useRouter();
+router.push(&quot;/dashboard&quot;);
+</code></pre>
+<h4>2. router.back()</h4>
+<p>Go back to previous screen:</p>
+<pre><code class="language-typescript">router.back();
+</code></pre>
+<h4>3. router.replace()</h4>
+<p>Replace current screen (no back button):</p>
+<pre><code class="language-typescript">router.replace(&quot;/dashboard&quot;);
+</code></pre>
+<h3>Root Layout</h3>
+<p>The <code>app/_layout.tsx</code> file wraps all screens:</p>
+<pre><code class="language-typescript">import { Stack } from &quot;expo-router&quot;;
+import { StatusBar } from &quot;expo-status-bar&quot;;
+
+export default function RootLayout() {
+  return (
+    &lt;&gt;
+      &lt;StatusBar style=&quot;auto&quot; /&gt;
+      &lt;Stack /&gt;
+    &lt;/&gt;
+  );
+}
+</code></pre>
+<p><strong>What it does:</strong></p>
+<ul>
+<li><code>StatusBar</code> - Controls top status bar appearance</li>
+<li><code>Stack</code> - Enables stack-based navigation (screens stack on top of each other)</li>
+</ul>
+<hr>
+<h2>8. State Management {#state-management}</h2>
+<h3>Understanding State</h3>
+<p><strong>State</strong> = Data that changes over time in your component</p>
+<h3>useState Hook</h3>
+<pre><code class="language-typescript">import { useState } from &#39;react&#39;;
+
+const [value, setValue] = useState(initialValue);
+</code></pre>
+<p><strong>Example - Counter:</strong></p>
+<pre><code class="language-typescript">const [count, setCount] = useState(0);
+
+&lt;Button 
+  title=&quot;Increment&quot; 
+  onPress={() =&gt; setCount(count + 1)} 
+/&gt;
+&lt;Text&gt;{count}&lt;/Text&gt;
+</code></pre>
+<h3>Controlled Components</h3>
+<p>In our login form, inputs are &quot;controlled&quot; by state:</p>
+<pre><code class="language-typescript">const [username, setUsername] = useState(&quot;&quot;);
+
+&lt;TextInput
+  value={username}              // Reads from state
+  onChangeText={setUsername}    // Writes to state
+/&gt;
+</code></pre>
+<p><strong>Flow:</strong></p>
+<ol>
+<li>User types in input</li>
+<li><code>onChangeText</code> fires</li>
+<li>Calls <code>setUsername(newValue)</code></li>
+<li>Component re-renders</li>
+<li>Input shows new value</li>
+</ol>
+<h3>Multiple State Variables</h3>
+<p>You can have many state variables:</p>
+<pre><code class="language-typescript">const [username, setUsername] = useState(&quot;&quot;);
+const [password, setPassword] = useState(&quot;&quot;);
+const [email, setEmail] = useState(&quot;&quot;);
+const [age, setAge] = useState(0);
+const [isLoggedIn, setIsLoggedIn] = useState(false);
+</code></pre>
+<hr>
+<h2>9. Styling in React Native {#styling}</h2>
+<h3>StyleSheet API</h3>
+<p>React Native uses JavaScript objects for styling:</p>
+<pre><code class="language-typescript">import { StyleSheet } from &#39;react-native&#39;;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: &#39;#fff&#39;,
+  },
+  text: {
+    fontSize: 20,
+    color: &#39;blue&#39;,
+  },
+});
+</code></pre>
+<h3>Common Style Properties</h3>
+<h4>Layout (Flexbox)</h4>
+<pre><code class="language-typescript">{
+  flex: 1,                    // Take up available space
+  flexDirection: &#39;row&#39;,       // Horizontal layout (default: &#39;column&#39;)
+  justifyContent: &#39;center&#39;,   // Main axis alignment
+  alignItems: &#39;center&#39;,       // Cross axis alignment
+}
+</code></pre>
+<h4>Spacing</h4>
+<pre><code class="language-typescript">{
+  margin: 10,              // All sides
+  marginTop: 20,           // Specific side
+  marginHorizontal: 15,    // Left and right
+  marginVertical: 10,      // Top and bottom
+  padding: 10,             // Inner spacing
+}
+</code></pre>
+<h4>Dimensions</h4>
+<pre><code class="language-typescript">{
+  width: 200,       // Fixed width
+  width: &#39;80%&#39;,     // Percentage
+  height: 40,       // Fixed height
+  minWidth: 100,    // Minimum width
+  maxWidth: 300,    // Maximum width
+}
+</code></pre>
+<h4>Text</h4>
+<pre><code class="language-typescript">{
+  fontSize: 20,
+  fontWeight: &#39;bold&#39;,     // &#39;normal&#39;, &#39;bold&#39;, &#39;100&#39;-&#39;900&#39;
+  color: &#39;#333&#39;,
+  textAlign: &#39;center&#39;,    // &#39;left&#39;, &#39;right&#39;, &#39;center&#39;
+}
+</code></pre>
+<h4>Borders</h4>
+<pre><code class="language-typescript">{
+  borderWidth: 1,
+  borderColor: &#39;gray&#39;,
+  borderRadius: 5,       // Rounded corners
+}
+</code></pre>
+<h4>Background</h4>
+<pre><code class="language-typescript">{
+  backgroundColor: &#39;#2A7B9B&#39;,
+  backgroundColor: &#39;rgba(42, 123, 155, 0.5)&#39;,  // With opacity
+}
+</code></pre>
+<h3>Applying Styles</h3>
+<pre><code class="language-typescript">// Single style
+&lt;View style={styles.container}&gt;
+
+// Multiple styles (array)
+&lt;View style={[styles.container, styles.bordered]}&gt;
+
+// Inline styles
+&lt;View style={{ flex: 1, padding: 20 }}&gt;
+
+// Conditional styles
+&lt;View style={[
+  styles.box,
+  isActive &amp;&amp; styles.activeBox
+]}&gt;
+</code></pre>
+<h3>Style Example from Our App</h3>
+<pre><code class="language-typescript">const styles = StyleSheet.create({
+  input: {
+    height: 40,               // Fixed height
+    borderColor: &quot;gray&quot;,      // Border color
+    borderWidth: 1,           // Border thickness
+    marginTop: 10,            // Space above
+    paddingHorizontal: 10,    // Padding left/right
+    width: &quot;80%&quot;,             // 80% of parent
+    backgroundColor: &quot;#fff&quot;,  // White background
+  },
+});
+</code></pre>
+<hr>
+<h2>10. Platform-Specific Code {#platform-specific}</h2>
+<h3>Detecting the Platform</h3>
+<pre><code class="language-typescript">import { Platform } from &#39;react-native&#39;;
+
+// Current platform
+Platform.OS  // &#39;ios&#39;, &#39;android&#39;, or &#39;web&#39;
+</code></pre>
+<h3>Platform.OS Usage</h3>
+<p>From our login code:</p>
+<pre><code class="language-typescript">if (Platform.OS === &quot;web&quot;) {
+  window.alert(message);      // Browser alert
+} else {
+  Alert.alert(message);       // Native alert
+}
+</code></pre>
+<h3>Platform.select()</h3>
+<p>Choose different values per platform:</p>
+<pre><code class="language-typescript">const styles = StyleSheet.create({
+  container: {
+    ...Platform.select({
+      ios: {
+        shadowColor: &#39;#000&#39;,
+        shadowOffset: { width: 0, height: 2 },
+      },
+      android: {
+        elevation: 4,
+      },
+      web: {
+        boxShadow: &#39;0 2px 4px rgba(0,0,0,0.2)&#39;,
+      },
+    }),
+  },
+});
+</code></pre>
+<h3>Platform-Specific Files</h3>
+<p>You can create separate files:</p>
+<pre><code>Button.ios.tsx    // Used on iOS
+Button.android.tsx // Used on Android
+Button.tsx        // Used on other platforms
+</code></pre>
+<hr>
+<h2>11. Best Practices {#best-practices}</h2>
+<h3>1. Component Organization</h3>
+<p><strong>Good Practice:</strong></p>
+<pre><code class="language-typescript">// Imports first
+import React, { useState } from &#39;react&#39;;
+import { View, Text } from &#39;react-native&#39;;
+
+// Component declaration
+export default function MyComponent() {
+  // Hooks at the top
+  const [state, setState] = useState(&quot;&quot;);
+  
+  // Functions
+  function handlePress() {
+    // logic
+  }
+  
+  // Return JSX
+  return (
+    &lt;View&gt;
+      &lt;Text&gt;Hello&lt;/Text&gt;
+    &lt;/View&gt;
+  );
+}
+
+// Styles at the bottom
+const styles = StyleSheet.create({
+  // styles
+});
+</code></pre>
+<h3>2. State Management</h3>
+<p><strong>Do:</strong></p>
+<pre><code class="language-typescript">const [username, setUsername] = useState(&quot;&quot;);
+setUsername(&quot;newValue&quot;);  // Correct
+</code></pre>
+<p><strong>Don&#39;t:</strong></p>
+<pre><code class="language-typescript">const [username, setUsername] = useState(&quot;&quot;);
+username = &quot;newValue&quot;;  // Wrong! Never mutate directly
+</code></pre>
+<h3>3. Key Props in Lists</h3>
+<p>Always use keys when mapping arrays:</p>
+<pre><code class="language-typescript">{users.map(user =&gt; (
+  &lt;Text key={user.id}&gt;{user.name}&lt;/Text&gt;
+))}
+</code></pre>
+<h3>4. Naming Conventions</h3>
+<ul>
+<li><strong>Components</strong>: PascalCase → <code>LoginScreen</code>, <code>UserProfile</code></li>
+<li><strong>Functions</strong>: camelCase → <code>handlePress</code>, <code>verifyUser</code></li>
+<li><strong>Constants</strong>: UPPER_CASE → <code>API_URL</code>, <code>MAX_LENGTH</code></li>
+</ul>
+<h3>5. Performance</h3>
+<ul>
+<li>Use <code>StyleSheet.create()</code> instead of inline styles</li>
+<li>Avoid anonymous functions in render:</li>
+</ul>
+<p><strong>Good:</strong></p>
+<pre><code class="language-typescript">function handlePress() {
+  console.log(&#39;pressed&#39;);
+}
+&lt;Button onPress={handlePress} /&gt;
+</code></pre>
+<p><strong>Avoid:</strong></p>
+<pre><code class="language-typescript">&lt;Button onPress={() =&gt; console.log(&#39;pressed&#39;)} /&gt;
+</code></pre>
+<h3>6. Security</h3>
+<p><strong>Don&#39;t hardcode credentials:</strong></p>
+<pre><code class="language-typescript">// Bad
+const API_KEY = &quot;12345-secret-key&quot;;
+</code></pre>
+<p><strong>Use environment variables:</strong></p>
+<pre><code class="language-typescript">// Good
+import { API_KEY } from &#39;@env&#39;;
+</code></pre>
+<h3>7. Error Handling</h3>
+<p>Always handle errors:</p>
+<pre><code class="language-typescript">try {
+  const response = await fetch(API_URL);
+  const data = await response.json();
+} catch (error) {
+  console.error(&#39;Error:&#39;, error);
+  Alert.alert(&#39;Error&#39;, &#39;Something went wrong&#39;);
+}
+</code></pre>
+<hr>
+<h2>12. Next Steps {#next-steps}</h2>
+<h3>Enhance the Login App</h3>
+<ol>
+<li><strong>Add Password Validation</strong></li>
+</ol>
+<pre><code class="language-typescript">function validatePassword(password: string): boolean {
+  return password.length &gt;= 8 &amp;&amp; /[A-Z]/.test(password);
+}
+</code></pre>
+<ol start="2">
+<li><strong>Add Loading State</strong></li>
+</ol>
+<pre><code class="language-typescript">const [isLoading, setIsLoading] = useState(false);
+
+function verifyUser() {
+  setIsLoading(true);
+  // Simulate API call
+  setTimeout(() =&gt; {
+    setIsLoading(false);
+    router.push(&quot;/dashboard&quot;);
+  }, 2000);
+}
+</code></pre>
+<ol start="3">
+<li><strong>Store User Data</strong></li>
+</ol>
+<pre><code class="language-typescript">import AsyncStorage from &#39;@react-native-async-storage/async-storage&#39;;
+
+// Save
+await AsyncStorage.setItem(&#39;username&#39;, username);
+
+// Retrieve
+const savedUsername = await AsyncStorage.getItem(&#39;username&#39;);
+</code></pre>
+<ol start="4">
+<li><strong>Add More Screens</strong></li>
+</ol>
+<pre><code>app/
+├── index.tsx
+├── dashboard.tsx
+├── profile.tsx        // New
+├── settings.tsx       // New
+└── about.tsx          // New
+</code></pre>
+<ol start="5">
+<li><strong>Add Real API Integration</strong></li>
+</ol>
+<pre><code class="language-typescript">async function verifyUser() {
+  const response = await fetch(&#39;https://api.example.com/login&#39;, {
+    method: &#39;POST&#39;,
+    headers: { &#39;Content-Type&#39;: &#39;application/json&#39; },
+    body: JSON.stringify({ username, password }),
+  });
+  
+  const data = await response.json();
+  if (data.success) {
+    router.push(&quot;/dashboard&quot;);
+  }
+}
+</code></pre>
+<h3>Learn More Topics</h3>
+<ol>
+<li><p><strong>Lists and FlatList</strong></p>
+<ul>
+<li>Display scrollable lists of data</li>
+<li>Efficiently render large datasets</li>
+</ul>
+</li>
+<li><p><strong>Images</strong></p>
+<ul>
+<li>Load local and remote images</li>
+<li>Image caching and optimization</li>
+</ul>
+</li>
+<li><p><strong>Animations</strong></p>
+<ul>
+<li>React Native Reanimated</li>
+<li>Animated API</li>
+<li>LayoutAnimation</li>
+</ul>
+</li>
+<li><p><strong>Forms</strong></p>
+<ul>
+<li>Form validation libraries (Formik, React Hook Form)</li>
+<li>Complex form handling</li>
+</ul>
+</li>
+<li><p><strong>API Integration</strong></p>
+<ul>
+<li>Fetch API</li>
+<li>Axios library</li>
+<li>REST and GraphQL</li>
+</ul>
+</li>
+<li><p><strong>State Management Libraries</strong></p>
+<ul>
+<li>Redux</li>
+<li>MobX</li>
+<li>Zustand</li>
+<li>Context API</li>
+</ul>
+</li>
+<li><p><strong>Testing</strong></p>
+<ul>
+<li>Jest for unit tests</li>
+<li>React Native Testing Library</li>
+<li>Detox for E2E testing</li>
+</ul>
+</li>
+<li><p><strong>Navigation</strong></p>
+<ul>
+<li>Tabs navigation</li>
+<li>Drawer navigation</li>
+<li>Modal screens</li>
+</ul>
+</li>
+</ol>
+<h3>Resources</h3>
+<p><strong>Official Documentation:</strong></p>
+<ul>
+<li><a href="https://reactnative.dev/">React Native Docs</a></li>
+<li><a href="https://docs.expo.dev/">Expo Documentation</a></li>
+<li><a href="https://react.dev/">React Documentation</a></li>
+</ul>
+<p><strong>Learning Platforms:</strong></p>
+<ul>
+<li>React Native Express</li>
+<li>Udemy courses</li>
+<li>YouTube tutorials</li>
+<li>FreeCodeCamp</li>
+</ul>
+<p><strong>Community:</strong></p>
+<ul>
+<li>Stack Overflow</li>
+<li>Reddit r/reactnative</li>
+<li>Discord servers</li>
+<li>GitHub discussions</li>
+</ul>
+<hr>
+<h2>Quick Reference</h2>
+<h3>Common Commands</h3>
+<pre><code class="language-bash"># Start development server
+npx expo start
+
+# Run on iOS simulator
+npx expo start --ios
+
+# Run on Android emulator
+npx expo start --android
+
+# Clear cache
+npx expo start -c
+
+# Install package
+npm install package-name
+
+# Update dependencies
+npm update
+</code></pre>
+<h3>Component Import Cheatsheet</h3>
+<pre><code class="language-typescript">// Core components
+import { 
+  View, 
+  Text, 
+  TextInput, 
+  Button, 
+  ScrollView,
+  FlatList,
+  Image,
+  TouchableOpacity,
+  StyleSheet,
+  Platform,
+  Alert
+} from &#39;react-native&#39;;
+
+// React
+import React, { useState, useEffect } from &#39;react&#39;;
+
+// Navigation
+import { useRouter, Stack } from &#39;expo-router&#39;;
+
+// Safe area
+import { SafeAreaView } from &#39;react-native-safe-area-context&#39;;
+</code></pre>
+<h3>Common Patterns</h3>
+<p><strong>Button with custom styling:</strong></p>
+<pre><code class="language-typescript">import { TouchableOpacity, Text } from &#39;react-native&#39;;
+
+&lt;TouchableOpacity 
+  style={styles.button} 
+  onPress={handlePress}
+&gt;
+  &lt;Text style={styles.buttonText}&gt;Press Me&lt;/Text&gt;
+&lt;/TouchableOpacity&gt;
+</code></pre>
+<p><strong>Loading indicator:</strong></p>
+<pre><code class="language-typescript">import { ActivityIndicator } from &#39;react-native&#39;;
+
+{isLoading &amp;&amp; &lt;ActivityIndicator size=&quot;large&quot; color=&quot;#0000ff&quot; /&gt;}
+</code></pre>
+<p><strong>Conditional rendering:</strong></p>
+<pre><code class="language-typescript">{isLoggedIn ? (
+  &lt;Text&gt;Welcome!&lt;/Text&gt;
+) : (
+  &lt;Text&gt;Please log in&lt;/Text&gt;
+)}
+</code></pre>
+<hr>
+<h2>Conclusion</h2>
+<p>Congratulations! You&#39;ve learned the fundamentals of React Native through building a login application. This guide covered:</p>
+<p>✅ Setting up a development environment<br>✅ Understanding project structure<br>✅ Using core React Native components<br>✅ Managing state with useState<br>✅ Handling navigation between screens<br>✅ Styling with StyleSheet<br>✅ Platform-specific code<br>✅ Best practices</p>
+<p><strong>Remember:</strong></p>
+<ul>
+<li>Practice regularly by building small projects</li>
+<li>Read documentation when stuck</li>
+<li>Join the community for help</li>
+<li>Start simple and gradually add complexity</li>
+</ul>
+<p>Happy coding! 🚀📱</p>
+<hr>
+<h2>Appendix: Complete Code Files</h2>
+<h3>app/index.tsx (Login Screen)</h3>
+<pre><code class="language-typescript">import { Stack, useRouter } from &quot;expo-router&quot;;
+import React, { useState } from &quot;react&quot;;
+import {
+  Alert,
+  Button,
+  Platform,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from &quot;react-native&quot;;
+import { SafeAreaProvider, SafeAreaView } from &quot;react-native-safe-area-context&quot;;
+
+export default function Index() {
+  const router = useRouter();
+  const [username, setUsername] = useState(&quot;&quot;);
+  const [password, setPassword] = useState(&quot;&quot;);
+
+  const staticUsername = &quot;Admin&quot;;
+  const staticPassword = &quot;Password123!&quot;;
+
+  function verifyUser() {
+    let message =
+      username !== staticUsername || password !== staticPassword
+        ? &quot;Invalid Credentials&quot;
+        : &quot;Login Successful&quot;;
+    if (Platform.OS === &quot;web&quot;) {
+      window.alert(message);
+      router.push(&quot;/dashboard&quot;);
+    } else {
+      Alert.alert(message);
+      router.push(&quot;/dashboard&quot;);
+    }
+  }
+
+  return (
+    &lt;SafeAreaProvider&gt;
+      &lt;Stack.Screen
+        options={{
+          headerStyle: {
+            backgroundColor: &quot;#2A7B9B&quot;,
+          },
+          headerTintColor: &quot;#fff&quot;,
+          headerTitleStyle: {
+            fontWeight: &quot;bold&quot;,
+          },
+          headerTitle: &quot;LOGIN&quot;,
+          headerTitleAlign: &quot;center&quot;,
+          headerLargeTitle: true,
+        }}
+      /&gt;
+      &lt;SafeAreaView style={styles.container}&gt;
+        &lt;View style={styles.mainContainer}&gt;
+          &lt;Text style={styles.text}&gt;Login System&lt;/Text&gt;
+          &lt;TextInput
+            style={styles.input}
+            value={username}
+            onChangeText={setUsername}
+            placeholder=&quot;Username&quot;
+          /&gt;
+          &lt;TextInput
+            style={styles.input}
+            onChangeText={setPassword}
+            value={password}
+            placeholder=&quot;Password&quot;
+            secureTextEntry
+          /&gt;
+          &lt;View style={styles.buttonFit}&gt;
+            &lt;Button title=&quot;Login&quot; onPress={verifyUser} /&gt;
+          &lt;/View&gt;
+        &lt;/View&gt;
+      &lt;/SafeAreaView&gt;
+    &lt;/SafeAreaProvider&gt;
+  );
+}
+
+const BACKGROUND_COLOR = &quot;#2A7B9B&quot;;
+const styles = StyleSheet.create({
+  buttonFit: {
+    width: &quot;80%&quot;,
+    marginTop: 10,
+  },
+  container: {
+    display: &quot;flex&quot;,
+    flex: 1,
+    justifyContent: &quot;center&quot;,
+    backgroundColor: BACKGROUND_COLOR,
+  },
+  text: {
+    fontSize: 24,
+    fontWeight: &quot;bold&quot;,
+    color: &quot;#fff&quot;,
+  },
+  input: {
+    height: 40,
+    borderColor: &quot;gray&quot;,
+    borderWidth: 1,
+    marginTop: 10,
+    paddingHorizontal: 10,
+    width: &quot;80%&quot;,
+    backgroundColor: &quot;#fff&quot;,
+  },
+  button: {
+    marginTop: 10,
+    width: &quot;80%&quot;,
+  },
+  mainContainer: {
+    display: &quot;flex&quot;,
+    alignItems: &quot;center&quot;,
+  },
+});
+</code></pre>
+<h3>app/dashboard.tsx (Dashboard Screen)</h3>
+<pre><code class="language-typescript">import { Stack, useRouter } from &quot;expo-router&quot;;
+import React from &quot;react&quot;;
+import { Button, StyleSheet, Text, View } from &quot;react-native&quot;;
+import { SafeAreaProvider, SafeAreaView } from &quot;react-native-safe-area-context&quot;;
+
+export default function Dashboard() {
+  const router = useRouter();
+
+  function logout() {
+    router.push(&quot;/&quot;);
+  }
+
+  return (
+    &lt;SafeAreaProvider&gt;
+      &lt;Stack.Screen
+        options={{
+          headerStyle: {
+            backgroundColor: &quot;#2A7B9B&quot;,
+          },
+          headerTintColor: &quot;#fff&quot;,
+          headerTitleStyle: {
+            fontWeight: &quot;bold&quot;,
+          },
+          headerTitle: &quot;DASHBOARD&quot;,
+          headerTitleAlign: &quot;center&quot;,
+        }}
+      /&gt;
+      &lt;SafeAreaView style={styles.container}&gt;
+        &lt;View style={styles.mainContainer}&gt;
+          &lt;Text style={styles.text}&gt;Dashboard&lt;/Text&gt;
+          &lt;Button title=&quot;Logout&quot; onPress={logout} /&gt;
+        &lt;/View&gt;
+      &lt;/SafeAreaView&gt;
+    &lt;/SafeAreaProvider&gt;
+  );
+}
+
+const BACKGROUND_COLOR = &quot;#2A7B9B&quot;;
+const styles = StyleSheet.create({
+  buttonFit: {
+    width: &quot;80%&quot;,
+    marginTop: 10,
+  },
+  container: {
+    display: &quot;flex&quot;,
+    flex: 1,
+    justifyContent: &quot;center&quot;,
+    backgroundColor: BACKGROUND_COLOR,
+  },
+  text: {
+    fontSize: 24,
+    fontWeight: &quot;bold&quot;,
+    color: &quot;#fff&quot;,
+  },
+  input: {
+    height: 40,
+    borderColor: &quot;gray&quot;,
+    borderWidth: 1,
+    marginTop: 10,
+    paddingHorizontal: 10,
+    width: &quot;80%&quot;,
+    backgroundColor: &quot;#fff&quot;,
+  },
+  button: {
+    marginTop: 10,
+    width: &quot;80%&quot;,
+  },
+  mainContainer: {
+    display: &quot;flex&quot;,
+    alignItems: &quot;center&quot;,
+  },
+});
+</code></pre>
+<h3>app/_layout.tsx (Root Layout)</h3>
+<pre><code class="language-typescript">import { Stack } from &quot;expo-router&quot;;
+import { StatusBar } from &quot;expo-status-bar&quot;;
+
+export default function RootLayout() {
+  return (
+    &lt;&gt;
+      &lt;StatusBar style=&quot;auto&quot; /&gt;
+      &lt;Stack /&gt;
+    &lt;/&gt;
+  );
+}
+</code></pre>
+<hr>
+<p><strong>End of Guide</strong></p>
+<p>This comprehensive guide covers everything a beginner needs to understand React Native based on your login app example. Use it as a reference while building your own applications!</p>
+
+    
+    <footer style="margin-top: 60px; padding-top: 20px; border-top: 2px solid #e0e0e0; text-align: center; color: #666;">
+        <p><strong>React Native Complete Beginner's Guide</strong></p>
+        <p>Generated from the Login App Example</p>
+        <p style="margin-top: 10px; font-size: 0.9em;">
+            💡 To convert this to PDF: Open in a browser → Print → Save as PDF<br>
+            📱 For best results, use Chrome or Firefox
+        </p>
+    </footer>
+</body>
+</html>
